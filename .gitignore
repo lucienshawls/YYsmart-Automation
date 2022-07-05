@@ -2,6 +2,7 @@
 /log*
 /settings.json
 Release/
+*.exe
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

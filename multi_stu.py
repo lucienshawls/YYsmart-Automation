@@ -86,12 +86,14 @@ if __name__ == '__main__':
     st = datetime.datetime.now()
     myprint('='*30)
     myprint('= ' + str(st) + ' =')
-    myprint('='*50)
+    myprint('='*60)
     try:
         main()
     except:
         myprint('The program failed to run.')
     ed = datetime.datetime.now()
-    myprint('='*50)
+    myprint('='*60)
     myprint('==' + str(ed) + '==')
     myprint('='*30)
+    if PAUSE_BEFORE_EXIT:
+        a = input('日志文件已生成，请按回车键或点击关闭按钮退出程序...')

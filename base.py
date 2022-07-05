@@ -11,7 +11,14 @@ from mytable import mycsv
 import os
 import json
 
-MYDIR=os.path.dirname(os.path.abspath(__file__))
+# determine if application is a script file or frozen exe
+if getattr(sys, 'frozen', False):
+    MYDIR=os.path.dirname(os.path.abspath(sys.executable))
+    PAUSE_BEFORE_EXIT = True
+else:
+    MYDIR=os.path.dirname(os.path.abspath(__file__))
+    PAUSE_BEFORE_EXIT = False
+
 TOTAL_COURSES = 8
 
 __mycorres = mycsv.read(MYDIR + '/data/course_list/c.csv')
