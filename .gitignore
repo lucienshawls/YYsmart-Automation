@@ -1,6 +1,7 @@
 # User Defined
 /log*
 /settings.json
+Release/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
