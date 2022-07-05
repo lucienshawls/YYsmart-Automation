@@ -90,10 +90,14 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
     # 检测右上角显示的名字
     actual_name = driver.find_element(by=By.XPATH,value='/html/body/div[3]/div[1]/div[3]/div/h3').text
     if sinfo['name'] != actual_name: # 如果右上角显示的名字与本地记录不符（登记错误或者密码错误）
-        myprint('\tName mismatch! ' + sinfo['name'] + ' // ' + actual_name) # 报错并展示两个名字
+        if actual_name == '':
+            myprint('\tIncorrect username or password!')
+            result = {'res':False,'info':'Incorrect username or password','courses':{}}
+        else:
+            myprint('\tName mismatch! ' + sinfo['name'] + ' // ' + actual_name) # 报错并展示两个名字
+            result = {'res':False,'info':'Name mismatch','courses':{}}
         driver.quit() # 退出浏览器
-        # 将本来留给预习、自测和考核的结果位置填入姓名不匹配
-        return {'res':False,'info':'Name mismatch','courses':{}}
+        return result
     result = {'res':True,'info':'No course','courses':{}}
     if exam_mode:
         a = input('\t请启动yysmart浏览助手并确认登陆账号为：' + sinfo['accnt'][0] + '输入y以显示密码')
