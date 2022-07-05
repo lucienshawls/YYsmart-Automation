@@ -73,7 +73,7 @@ def mysubmit(filenames, mode):
     myprint('')
 
 def main():
-    with open(MYDIR + '/data_file_list.txt','r',encoding='utf-8') as f:
+    with open(MYDIR + '/students/data_file_list.txt','r',encoding='utf-8') as f:
         # filenames = ['filename1', 'filename2', 'template',]
         filenames = f.read().strip().split('\n')
     ## mode: check, auto, exam
