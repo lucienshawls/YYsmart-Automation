@@ -2,9 +2,6 @@ import base
 from base import *
 import single_stu
 
-# FILE_NAME = ['filename1', 'filename2', 'template',]
-FILE_NAME = open(MYDIR + '/students/list.txt','r',encoding='utf-8').read().split('\n')
-
 def get_all_sinfo(filename,submit=False,verify=True):
     sl = mycsv.read(MYDIR + '/students/' + filename + '.csv') # 读取学生名单
     res = []
@@ -30,9 +27,9 @@ def get_all_sinfo(filename,submit=False,verify=True):
         res.append(sinfo) # 将单个学生信息加入总表，最后返回
     return res
 
-def mysubmit(mode):
+def mysubmit(filenames, mode):
     stu_list = []
-    for filename in FILE_NAME:
+    for filename in filenames:
         if len(filename) == 0:
             continue
         stu_list += get_all_sinfo(filename) # 获得包含很多条记录的列表，每个记录是学生信息字典sinfo
@@ -76,21 +73,24 @@ def mysubmit(mode):
     myprint('')
 
 def main():
+    with open(MYDIR + '/data_file_list.txt','r',encoding='utf-8') as f:
+        # filenames = ['filename1', 'filename2', 'template',]
+        filenames = f.read().strip().split('\n')
     ## mode: check, auto, exam
-    settings_file = open(MYDIR + '/settings.json','r',encoding='utf-8')
-    settings = json.loads(settings_file.read())
-    settings_file.close()
+    with open(MYDIR + '/settings.json','r',encoding='utf-8') as g:
+        settings = json.loads(g.read())
     mode = settings['runtime']['mode']
-    mysubmit(mode = mode)
+    mysubmit(filenames=filenames, mode = mode)
 
 if __name__ == '__main__':
     st = datetime.datetime.now()
     myprint('='*30)
     myprint('= ' + str(st) + ' =')
     myprint('='*50)
-
-    main()
-
+    try:
+        main()
+    except:
+        myprint('The program failed to run.')
     ed = datetime.datetime.now()
     myprint('='*50)
     myprint('==' + str(ed) + '==')
