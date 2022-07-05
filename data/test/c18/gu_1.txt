@@ -1,0 +1,21 @@
+3 15 5 0
+B
+D
+E
+B
+A
+C
+E
+A
+A
+A
+B
+C
+B
+A
+D
+ABCD
+ABCD
+ABCD
+ABCDE
+ABCD

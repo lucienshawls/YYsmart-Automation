@@ -1,0 +1,11 @@
+name: Show Google Chrome Version
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Show chrome version
+        run: |
+          /usr/bin/google-chrome --version
