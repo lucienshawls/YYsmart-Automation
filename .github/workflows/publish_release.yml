@@ -49,9 +49,9 @@ jobs:
         mkdir ./release/YYsmart-Automation_Linux/
         cd ./release/YYsmart-Automation_Linux/
         cp ../../dist/YYsmart-Automation .
-        cp ../../data .
-        cp ../../students .
-        cp ../../settings_profiles .
+        cp -r ../../data .
+        cp -r ../../students .
+        cp -r ../../settings_profiles .
     - name: Zip Files
       run: |
         cd ./release
@@ -91,9 +91,9 @@ jobs:
         mkdir ./release/YYsmart-Automation_Windows/
         cd ./release/YYsmart-Automation_Windows/
         cp ../../dist/YYsmart-Automation.exe .
-        cp ../../data .
-        cp ../../students .
-        cp ../../settings_profiles .
+        cp -r ../../data .
+        cp -r ../../students .
+        cp -r ../../settings_profiles .
     - name: Zip Files
       run: |
         cd ./release
