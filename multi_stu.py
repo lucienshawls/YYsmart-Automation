@@ -80,7 +80,7 @@ def main():
     with open(MYDIR + '/settings.json','r',encoding='utf-8') as g:
         settings = json.loads(g.read())
     mode = settings['runtime']['mode']
-    mysubmit(filenames=filenames, mode = mode)
+    mysubmit(filenames=filenames, mode=mode)
 
 if __name__ == '__main__':
     st = datetime.datetime.now()

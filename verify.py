@@ -21,34 +21,34 @@ settings_file = MYDIR + '/settings.json'
 if os.path.exists(settings_file):
     with open(settings_file,'r',encoding='utf-8') as f:
         SETTINGS = json.loads(f.read())
-def myverify(stu_list,set_skip=False): # 确认学生信息是否正确
-    incorrect = []
-    skip = []
-    if set_skip: # “验证信息正确”和“跳过某些学生记录不提交”代码逻辑相同，故整合
-        notify = "，是否加入提交列表" # 设置提示语
-    else:
-        notify = "，请确认"
-    for sinfo in stu_list:
-        mytake = []
-        notake = []
-        for option in sinfo['options'].items():
-            if(option[1]): # 修读
-                mytake.append(CORRES[option[0]]) # 获取修读的课程中文名字，加入列表
-            else:
-                notake.append(CORRES[option[0]]) # 获取不修读的课程中文名字，加入列表
-        if len(mytake) == 0:
-            mytake = ['（无）']
-        if len(notake) == 0:
-            notake = ['（无）']
-        confirm = input(sinfo['name'] + '同学（学号为：' + sinfo['accnt'][0] +  '）修读' + sinfo['period'] + '学时GMP课程，' + '修读以下课程：' + '、'.join(mytake) + '，不修读以下课程：' + '、'.join(notake) + notify)
-        if confirm != 'y' and confirm != 'Y':
-            incorrect.append(sinfo['name']) # 按N，验证不通过（将学生姓名加入列表）或跳过提交（不做任何事）
-        else:
-            skip.append(sinfo) # 按Y，验证通过（不做任何事）或不跳过提交（将学生信息字典加入提交的列表）
-    if set_skip: # 根据不同的模式返回不一样的列表
-        return skip # 这里存储的是不被跳过的学生信息列表
-    else:
-        return [not len(incorrect),incorrect] # 这里存储的是[是否完全验证通过,不通过的学生姓名名单（列表）]
+# def myverify(stu_list,set_skip=False): # 确认学生信息是否正确
+#     incorrect = []
+#     skip = []
+#     if set_skip: # “验证信息正确”和“跳过某些学生记录不提交”代码逻辑相同，故整合
+#         notify = "，是否加入提交列表" # 设置提示语
+#     else:
+#         notify = "，请确认"
+#     for sinfo in stu_list:
+#         mytake = []
+#         notake = []
+#         for option in sinfo['options'].items():
+#             if(option[1]): # 修读
+#                 mytake.append(CORRES[option[0]]) # 获取修读的课程中文名字，加入列表
+#             else:
+#                 notake.append(CORRES[option[0]]) # 获取不修读的课程中文名字，加入列表
+#         if len(mytake) == 0:
+#             mytake = ['（无）']
+#         if len(notake) == 0:
+#             notake = ['（无）']
+#         confirm = input(sinfo['name'] + '同学（学号为：' + sinfo['accnt'][0] +  '）修读' + sinfo['period'] + '学时GMP课程，' + '修读以下课程：' + '、'.join(mytake) + '，不修读以下课程：' + '、'.join(notake) + notify)
+#         if confirm != 'y' and confirm != 'Y':
+#             incorrect.append(sinfo['name']) # 按N，验证不通过（将学生姓名加入列表）或跳过提交（不做任何事）
+#         else:
+#             skip.append(sinfo) # 按Y，验证通过（不做任何事）或不跳过提交（将学生信息字典加入提交的列表）
+#     if set_skip: # 根据不同的模式返回不一样的列表
+#         return skip # 这里存储的是不被跳过的学生信息列表
+#     else:
+#         return [not len(incorrect),incorrect] # 这里存储的是[是否完全验证通过,不通过的学生姓名名单（列表）]
 def clear_screen():
     if os.name == 'nt':
         a = os.system('cls')
@@ -235,13 +235,31 @@ def config_settings(last_msg):
             err_msg = '==输入有误，请重新输入==\n'
             continue
         err_msg = ''
-
+# def config_students(last_msg):
+#     prompt_text = '''指南-导入学生信息
+    
+#     '''
+#     err_msg = ''
+#     while True:
+#         clear_screen()
+#         print(last_msg)
+#         print(err_msg)
+#         print(prompt_text)
+#         a = input('请输入:')
+#         if a == '1':
+#             pass
+#         elif a == '2':
+#             pass
+#         elif a == '0':
+#             return
+#         else:
+#             err_msg = '==输入有误，请重新输入==\n'
+#             continue
+#         err_msg = ''
+#         break
 def home(last_msg):
     prompt_text ='''菜单列表-主菜单
-    1. 检查程序资源完整性
-    2. 完成程序的基本配置
-    3. 创建或修改学生信息
-    4. 验证设置和学生信息
+    1. 完成程序的基本配置
     0. 退出
     '''
     err_msg = ''
@@ -252,16 +270,11 @@ def home(last_msg):
         print(prompt_text)
         a = input('请选择（输入序号后按回车）:')
         if a == '1':
-            return
-        elif a == '2':
             config_settings('完成程序的基本配置')
-        elif a == '3':
-            pass
-        elif a == '4':
-            pass
+        # elif a == '2':
+        #     config_students('导入学生信息')
         elif a == '0':
             return
-
         else:
             err_msg = '==输入有误，请重新输入==\n'
             continue
