@@ -26,3 +26,10 @@ def myverify(stu_list,set_skip=False): # 确认学生信息是否正确
         return skip # 这里存储的是不被跳过的学生信息列表
     else:
         return [not len(incorrect),incorrect] # 这里存储的是[是否完全验证通过,不通过的学生姓名名单（列表）]
+def config_settings():
+    a = input('此辅助程序可帮助用户完成基本设置，按回车键继续...')
+    print()
+def main():
+    pass
+if __name__ == '__main__':
+    main()
