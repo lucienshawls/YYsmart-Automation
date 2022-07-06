@@ -43,12 +43,14 @@ jobs:
     - name: Build by Pyinstaller
       run: |
         pyinstaller -F -n YYsmart-Automation multi_stu.py
+        pyinstaller -F -n Helper helper.py
     - name: Arrange Files
       run: |
         mkdir ./release/
         mkdir ./release/YYsmart-Automation_Linux/
         cd ./release/YYsmart-Automation_Linux/
         cp ../../dist/YYsmart-Automation .
+        cp ../../dist/Helper .
         cp -r ../../data .
         cp -r ../../students .
         cp -r ../../settings_profiles .
@@ -85,12 +87,14 @@ jobs:
     - name: Build by Pyinstaller
       run: |
         pyinstaller -F -n YYsmart-Automation.exe multi_stu.py
+        pyinstaller -F -n Helper.exe helper.py
     - name: Arrange Files
       run: |
         mkdir ./release/
         mkdir ./release/YYsmart-Automation_Windows/
         cd ./release/YYsmart-Automation_Windows/
         cp ../../dist/YYsmart-Automation.exe .
+        cp ../../dist/Helper.exe .
         cp -r ../../data .
         cp -r ../../students .
         cp -r ../../settings_profiles .
