@@ -1,2 +1,2 @@
 selenium==4.3.0
-mytable-lucien==4.6.4
+mytable-lucien==5.0.2
