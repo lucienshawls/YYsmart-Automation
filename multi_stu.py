@@ -77,8 +77,8 @@ def main():
         # filenames = ['filename1', 'filename2', 'template',]
         filenames = f.read().strip().split('\n')
     ## mode: check, auto, exam
-    with open(MYDIR + '/settings.json','r',encoding='utf-8') as g:
-        settings = json.loads(g.read())
+    with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as g:
+        settings = yaml.full_load(g.read())
     mode = settings['runtime']['mode']
     mysubmit(filenames=filenames, mode=mode)
 

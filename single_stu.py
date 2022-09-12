@@ -3,9 +3,8 @@ from base import *
 import yycourse
 
 def get_driver_options():
-    settings_file = open(MYDIR + '/settings.json','r',encoding='utf-8')
-    settings = json.loads(settings_file.read())
-    settings_file.close()
+    with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as f:
+        settings = yaml.full_load(f.read())
     myoption = settings['driver'] # myoption这个字典就是settings['driver']这个字典
     return myoption
 
@@ -58,13 +57,12 @@ def get_user_id(_drivr):
     return user_id
 
 def fake_download(_drivr,user_id):
-    settings_file = open(MYDIR + '/settings.json','r',encoding='utf-8')
-    settings = json.loads(settings_file.read())
-    settings_file.close()
+    with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as f:
+        settings = yaml.full_load(f.read())
     user_profile_dir = settings['yysmart']['user_profile_path']
     safety_education_ppt_url = 'yysmarturl://res:server=www.yysmart.cn&fid=Nb75816c6ad0f4ceeba361dbd358e908a&fext=ppt&fname=安全教育.ppt&logoid=Nc7904ab0ec9f4b27999f2b9850b42182&ftype=0&hashcode=ce2f6b8090f352c8c7c573a348d88a71'
     _drivr.get(safety_education_ppt_url)
-    a = input('\t\t\t\t正在唤起示例资源链接，请在浏览器中点击打开应用，接着点击否（不要下载），然后按回车继续')
+    a = input('\t\t\t\t正在唤起示例资源链接，请在浏览器中点击打开yyamrt应用，接着点击否（不要下载），然后按回车继续')
     ## 如果userid文件夹不存在则创建
     ## 进入文件夹，将dat文件粘贴
     user_folder_name = '0'*(8-len(user_id)) + user_id
@@ -143,4 +141,3 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
         result['info'] = 'ERROR!'
     driver.quit()
     return result
-

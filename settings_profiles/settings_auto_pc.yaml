@@ -1,0 +1,9 @@
+driver:
+  browser: 'edge'
+  driver_path: 'C:\Users\lucien\AppData\Local\Programs\selenium_driver\edge\103.0.1264.37\msedgedriver.exe'
+  options: []
+runtime:
+  mode: 'auto'
+yysmart:
+  resource_path: ''
+  user_profile_path: ''

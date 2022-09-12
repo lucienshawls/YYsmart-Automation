@@ -135,9 +135,8 @@ def perform_exam(_drivr,cinfo,cur,user_id): # 进行仿真考核 # [id,simp_nm,p
     Clickx(_drivr,spot) # 点击仿真考核资源
     a = input('\t\t\t请在浏览器中点击确定，之后请等待考核界面加载；加载完毕后，请站在原地不动，直接点击接受任务、完成任务一直到底，出现日志后按回车键以继续')
     # 找到*.exam文件并覆盖内容
-    settings_file = open(MYDIR + '/settings.json','r',encoding='utf-8')
-    settings = json.loads(settings_file.read())
-    settings_file.close()
+    with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as f:
+        settings = yaml.full_load(f.read())
     resource_dir = settings['yysmart']['resource_path']
     if resource_dir[-1] == '/' or resource_dir[-1] == '\\':
         resource_dir = resource_dir[:-1]
