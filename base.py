@@ -6,10 +6,9 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-import mytable
-from mytable import mycsv
+from mytable_lucien import mycsv
 import os
-import json
+import yaml
 
 # determine if application is a script file or frozen exe
 if getattr(sys, 'frozen', False):

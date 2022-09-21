@@ -1,6 +1,6 @@
 # User Defined
 /log*
-/settings.json
+/settings.yaml
 Release/
 *.exe
 
