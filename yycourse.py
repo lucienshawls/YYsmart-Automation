@@ -105,8 +105,8 @@ def test(_drivr,cinfo): # 自测
             myprint('\t\t\t' + str(i) + '/' + str(num) + '(' + str(trials) + ')')
             time.sleep(1) # 等待测试卷页面加载
             perform_test(_drivr,cinfo,i) # 填写答案
-            detail(_drivr,cinfo) # 填完返回课程详情页
-            time.sleep(1) # 等待课程详情页加载
+        detail(_drivr,cinfo) # 填完返回课程详情页
+        time.sleep(1) # 等待课程详情页加载
         trials += 1
         if trials >= 2:
             myprint('\t\t\tToo many trials.')
@@ -177,8 +177,8 @@ def exam(_drivr,cinfo,user_id): # 仿真考核
             except:
                 pass
             time.sleep(1) # 稍等，在安装了yysmart的情况下，浏览器可能弹出警告
-            detail(_drivr,cinfo) # 回到课程详情
-            time.sleep(1) # 等待课程详情页加载
+        detail(_drivr,cinfo) # 回到课程详情
+        time.sleep(1) # 等待课程详情页加载
         trials += 1
         if trials >= 2:
             myprint('\t\t\tToo many trials.')
