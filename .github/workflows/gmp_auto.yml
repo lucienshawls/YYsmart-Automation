@@ -1,8 +1,9 @@
-name: GMP_Auto
+name: GMP Auto
 on:
   workflow_dispatch:
 jobs:
   auto_complete:
+    name: Auto Complete
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
