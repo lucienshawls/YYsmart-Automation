@@ -3,7 +3,7 @@ from base import *
 import single_stu
 
 def get_all_sinfo(filename,submit=False,verify=True):
-    sl = mycsv.read(MYDIR + '/students/' + filename + '.csv') # 读取学生名单
+    sl = mycsv(MYDIR + '/students/' + filename + '.csv') # 读取学生名单
     res = []
     for stu in sl:
         if stu[12] == 'exclude': # 被exclude标记的那一行被跳过
@@ -43,7 +43,7 @@ def mysubmit(filenames, mode):
                     myprint('Completing the simulation exams part...\n')
                     res = single_stu.mysubmit(stu,check_only=False,exam_mode=True)
                 else: # mode == 'auto'
-                    myprint('Completing the preview and test part...\n')
+                    myprint('Completing the preview and test parts...\n')
                     res = single_stu.mysubmit(stu,check_only=False,exam_mode=False) # 开始
             else: # 如果仅验证
                 myprint('Checking for completion...\n')
