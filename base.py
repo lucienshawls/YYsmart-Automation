@@ -6,7 +6,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from mytable_lucien import mycsv
+import csv
+import chardet
 import os
 import yaml
 
@@ -18,16 +19,25 @@ else:
     MYDIR=os.path.dirname(os.path.abspath(__file__))
     PAUSE_BEFORE_EXIT = False
 
+def mycsv(filename):
+    with open(filename,'rb') as f:
+        text = f.read()
+        res = chardet.detect(text)
+
+    with open(filename, 'r', encoding=res['encoding']) as csvfile:
+        myreader = csv.reader(csvfile)  
+        return [x for x in list(myreader) if x != []]
+
 TOTAL_COURSES = 8
 
-__mycorres = mycsv.read(MYDIR + '/data/course_list/c.csv')
+__mycorres = mycsv(MYDIR + '/data/course_list/c.csv')
 CORRES = {}
 for __corres in __mycorres:
     CORRES[__corres[0]] = __corres[1] # CORRES['an'] = '安'
 
 def myprint(mystr):
     print(mystr)
-    with open(MYDIR + '/log.txt','a+',encoding='utf8') as f:
+    with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
         f.write(mystr + '\n')
 
 def Clickx(_drivr,ele): #Click on the ele(ment) through xpath by ActionChains

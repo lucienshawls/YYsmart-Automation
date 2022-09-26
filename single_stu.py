@@ -77,7 +77,7 @@ def fake_download(_drivr,user_id):
 
 def mysubmit(sinfo,check_only=False,exam_mode=False):
     # 读取课程信息
-    course_list = mycsv.read(MYDIR + '/data/course_list/c' + sinfo['credit_hr'] +'.csv')
+    course_list = mycsv(MYDIR + '/data/course_list/c' + sinfo['credit_hr'] +'.csv')
     myprint('Initiating browser...')
     driver = init(myoption=get_driver_options(),exam_mode=exam_mode) # 初始化浏览器并导航至药育平台官网
     myprint('Attempting login...')
