@@ -35,14 +35,19 @@ CORRES = {}
 for __corres in __mycorres:
     CORRES[__corres[0]] = __corres[1] # CORRES['an'] = '安'
 
-def myprint(mystr, log=True, cmdout=False):
-    if cmdout:
+with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as g:
+    settings = yaml.full_load(g.read())
+LOG = settings['runtime']['log']
+CMDOUT = settings['runtime']['cmdout']
+
+def myprint(mystr):
+    if CMDOUT:
         cmdstrs = mystr.split('\n')
         for cmdstr in cmdstrs:
             os.system('echo=%s'%(cmdstr))
     else:
         print(mystr)
-    if log:
+    if LOG:
         with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
             f.write(mystr + '\n')
 

@@ -97,4 +97,4 @@ if __name__ == '__main__':
     myprint('='*30)
     myprint('')
     if PAUSE_BEFORE_EXIT:
-        a = input('日志文件已生成，请按回车键或点击关闭按钮退出程序...')
+        a = input('程序运行结束，请按回车键或点击关闭按钮退出程序...')
