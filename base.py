@@ -35,10 +35,16 @@ CORRES = {}
 for __corres in __mycorres:
     CORRES[__corres[0]] = __corres[1] # CORRES['an'] = '安'
 
-def myprint(mystr):
-    print(mystr)
-    with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
-        f.write(mystr + '\n')
+def myprint(mystr, log=True, cmdout=False):
+    if cmdout:
+        cmdstrs = mystr.split('\n')
+        for cmdstr in cmdstrs:
+            os.system('echo=%s'%(cmdstr))
+    else:
+        print(mystr)
+    if log:
+        with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
+            f.write(mystr + '\n')
 
 def Clickx(_drivr,ele): #Click on the ele(ment) through xpath by ActionChains
     spot=_drivr.find_element(by=By.XPATH,value=ele)
