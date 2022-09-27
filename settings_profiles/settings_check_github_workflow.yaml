@@ -9,9 +9,9 @@ driver:
   - '--headless'
   - 'window-size=1920x1080'
 runtime:
-  mode: 'check'
-  log: false
   cmdout: true
+  log: false
+  mode: 'check'
 yysmart:
   resource_path: ''
   user_profile_path: ''
