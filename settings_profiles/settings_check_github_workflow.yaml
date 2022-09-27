@@ -10,6 +10,8 @@ driver:
   - 'window-size=1920x1080'
 runtime:
   mode: 'check'
+  log: false
+  cmdout: true
 yysmart:
   resource_path: ''
   user_profile_path: ''

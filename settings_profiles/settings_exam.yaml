@@ -4,6 +4,8 @@ driver:
   options: []
 runtime:
   mode: 'exam'
+  log: true
+  cmdout: false
 yysmart:
   resource_path: 'C:\Users\lucien\Documents\GMP\YYsmart'
   user_profile_path: 'C:\Users\lucien\AppData\Roaming\YYsmartWeb'

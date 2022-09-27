@@ -4,6 +4,8 @@ driver:
   options: []
 runtime:
   mode: 'auto'
+  log: true
+  cmdout: false
 yysmart:
   resource_path: ''
   user_profile_path: ''
