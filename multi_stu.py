@@ -90,7 +90,7 @@ if __name__ == '__main__':
     try:
         main()
     except:
-        myprint('The program failed to run.')
+        myprint('The program failed to run. Check settings and the webdriver.')
     ed = datetime.datetime.now()
     myprint('='*60)
     myprint('==' + str(ed) + '==')
