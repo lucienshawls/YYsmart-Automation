@@ -90,11 +90,11 @@ if __name__ == '__main__':
     try:
         main()
     except:
-        myprint('The program failed to run.')
+        myprint('The program failed to run. Check settings and the webdriver.')
     ed = datetime.datetime.now()
     myprint('='*60)
-    myprint('==' + str(ed) + '==')
+    myprint('= ' + str(ed) + ' =')
     myprint('='*30)
     myprint('')
     if PAUSE_BEFORE_EXIT:
-        a = input('日志文件已生成，请按回车键或点击关闭按钮退出程序...')
+        a = input('程序运行结束，请按回车键或点击关闭按钮退出程序...')

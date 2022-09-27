@@ -35,10 +35,21 @@ CORRES = {}
 for __corres in __mycorres:
     CORRES[__corres[0]] = __corres[1] # CORRES['an'] = '安'
 
+with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as g:
+    settings = yaml.full_load(g.read())
+LOG = settings['runtime']['log']
+CMDOUT = settings['runtime']['cmdout']
+
 def myprint(mystr):
-    print(mystr)
-    with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
-        f.write(mystr + '\n')
+    if CMDOUT:
+        cmdstrs = mystr.split('\n')
+        for cmdstr in cmdstrs:
+            os.system('echo=%s'%(cmdstr))
+    else:
+        print(mystr)
+    if LOG:
+        with open(MYDIR + '/log.txt','a+',encoding='utf-8') as f:
+            f.write(mystr + '\n')
 
 def Clickx(_drivr,ele): #Click on the ele(ment) through xpath by ActionChains
     spot=_drivr.find_element(by=By.XPATH,value=ele)
