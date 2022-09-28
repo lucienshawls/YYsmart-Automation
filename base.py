@@ -63,3 +63,17 @@ def Enterx(_drivr,word,ele): #Put the word in the ele(ment) through xpath
     spot=_drivr.find_element(by=By.XPATH,value=ele)
     spot.send_keys(Keys.CONTROL,'a') #Select all, making sure it's empty
     spot.send_keys(word)
+
+def selenium_wait(_drivr,ele): # 检测ele存在
+    wait_time = 6
+    wait_step = 0.5
+    res = False
+    for i in range(int(wait_time/wait_step)):
+        try:
+            spot = _drivr.find_element(by=By.XPATH,value=ele)
+        except:
+            time.sleep(wait_step)
+        else:
+            res = True
+            break
+    return res
