@@ -121,7 +121,7 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
     for i in range(TOTAL_COURSES): # 遍历每个课程
         try:
             # 课程列表中当前课程的简写拼音名字（如an）对应的学生信息字典中option下的选修课程情况为确实选修
-            if sinfo['options'][course_list[i][2]]: 
+            if sinfo['options'][course_list[i][2]]:
                 result['info'] = 'Complete!' # 如果有修读的课程，就覆盖“No course”的消息
                 myprint('\tHandling: ' + course_list[i][0])
                 cinfo = course_list[i][1:] # 获取课程信息。

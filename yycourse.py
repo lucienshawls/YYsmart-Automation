@@ -23,7 +23,7 @@ def detail(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
     # 详情页
     COURSE_URL = 'http://www.yysmart.cn/class-detail.html?id='
     curl = COURSE_URL + cinfo[0]
-    
+
     _drivr.get(curl)
     myerr = 0
     while not selenium_wait(_drivr, COURSE_TABS_STAT):
@@ -46,7 +46,7 @@ def prev_check(_drivr,cinfo): # returns [,[list(starts from 1)]]
         else:
             break
         myerr += 1
-    
+
     Clickx(_drivr, COURSE_TABS_STAT) # 点击学习概况
 
     for i in range(1,num+1): # 逐个看学习状况中的每个预习完成情况（序号从1开始）
@@ -60,7 +60,7 @@ def prev_check(_drivr,cinfo): # returns [,[list(starts from 1)]]
             else:
                 break
             myerr += 1
-                
+
         if _drivr.find_element(by=By.XPATH,value=spot).text == '未学习':
             res.append(i) # 将未学习的预习资源序号加入结果列表
         else:
@@ -85,7 +85,7 @@ def prev(_drivr,cinfo): # 预习
         Clickx(_drivr, COURSE_TABS_PREV) # 点击预习页
         for i in check_res[1]: # 遍历每个没完成的序号
             spot = COURSE_TABS_PREV_CONTENT + '/li[' + str(i) + ']' + COURSE_TABS_PREV_CONTENT_DELTA_IMG
-            
+
             myerr = 0
             while not selenium_wait(_drivr, spot):
                 if myerr < 2:
@@ -94,7 +94,7 @@ def prev(_drivr,cinfo): # 预习
                 else:
                     break
                 myerr += 1
-            
+
             Clickx(_drivr,spot) # 点击序号对应的资源就算预习
             time.sleep(0.8*(trials+1)) # 越往后尝试，间隔越长
             myprint('\t\t\t' + str(i) + '/' + str(num) + '(' + str(trials) + ')')
@@ -122,7 +122,7 @@ def test_check(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
     Clickx(_drivr,COURSE_TABS_STAT) # 点击学习概况
     for i in range(mybefore+1,mybefore+num+1): # 这个范围是学习概况中“自测”部分的始末位置
         spot = COURSE_TABS_STAT_CONTENT + '/div[' + str(i) + ']' + COURSE_TABS_STAT_CONTENT_DELTA_STAT
-        
+
         myerr = 0
         while not selenium_wait(_drivr, spot):
             if myerr < 2:
@@ -131,7 +131,7 @@ def test_check(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
             else:
                 break
             myerr += 1
-        
+
         if _drivr.find_element(by=By.XPATH,value=spot).text != '100分':
             res.append(i-mybefore) # 没拿到满分就把自测资源的内部序号加入列表
         else:
@@ -172,7 +172,7 @@ def test(_drivr,cinfo): # 自测
         Clickx(_drivr, COURSE_TABS_TEST) # 点击自测页
         for i in check_res[1]: # 遍历没有做满分的自测题序号（从1开始）
             spot = COURSE_TABS_TEST_CONTENT + '/li[' + str(i) + ']' + COURSE_TABS_TEST_CONTENT_DELTA_TEST
-            
+
             myerr = 0
             while not selenium_wait(_drivr, spot):
                 if myerr < 2:
@@ -181,7 +181,7 @@ def test(_drivr,cinfo): # 自测
                 else:
                     break
                 myerr += 1
-            
+
             Clickx(_drivr,spot) # 点开一个测试卷
             myprint('\t\t\t' + str(i) + '/' + str(num) + '(' + str(trials) + ')')
             time.sleep(1) # 等待测试卷页面加载
@@ -211,7 +211,7 @@ def exam_check(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
     Clickx(_drivr,COURSE_TABS_STAT) # 点击学习概况
     for i in range(mybefore+1,mybefore+num+1): # 这个范围是学习概况中“仿真考核”部分的始末位置
         spot = COURSE_TABS_STAT_CONTENT + '/div[' + str(i) + ']' + COURSE_TABS_STAT_CONTENT_DELTA_STAT
-        
+
         myerr = 0
         while not selenium_wait(_drivr, spot):
             if myerr < 2:
@@ -220,7 +220,7 @@ def exam_check(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
             else:
                 break
             myerr += 1
-        
+
         if _drivr.find_element(by=By.XPATH,value=spot).text != '100分':
             res.append(i-mybefore) # 没拿到满分就把自测资源的内部序号加入列表
         else:
@@ -229,7 +229,7 @@ def exam_check(_drivr,cinfo): # [id,simp_nm,p,t,e,credit_hr]
 
 def perform_exam(_drivr,cinfo,cur,user_id): # 进行仿真考核 # [id,simp_nm,p,t,e,credit_hr]
     spot = COURSE_TABS_EXAM_CONTENT + '/li[' + str(cur) + ']' + COURSE_TABS_EXAM_CONTENT_DELTA_IMG
-    
+
     myerr = 0
     while not selenium_wait(_drivr, spot):
         if myerr < 2:
@@ -238,7 +238,7 @@ def perform_exam(_drivr,cinfo,cur,user_id): # 进行仿真考核 # [id,simp_nm,p
         else:
             break
         myerr += 1
-    
+
     a = input('\t\t\t准备进行仿真考核，当前第' + str(cur) + '个，请按回车键继续')
     Clickx(_drivr,spot) # 点击仿真考核资源
     a = input('\t\t\t请在浏览器中点击确定，之后请等待考核界面加载；加载完毕后，请站在原地不动，直接点击接受任务、完成任务一直到底，出现日志后按回车键以继续')
@@ -265,7 +265,7 @@ def perform_exam(_drivr,cinfo,cur,user_id): # 进行仿真考核 # [id,simp_nm,p
     replacement = exam_content[0:pos+7] + '100,"answer":""}'
     with open(exam_full_filename,'w',encoding='utf-8') as f:
         f.write(replacement)
-    
+
     a = input('\t\t\t文件替换完成，请点击仿真考核中的退出，按回车键继续')
     time.sleep(1)
     a = input('\t\t\t此仿真考核已完成，请按回车键继续')
