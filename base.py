@@ -25,7 +25,7 @@ def mycsv(filename):
         res = chardet.detect(text)
 
     with open(filename, 'r', encoding=res['encoding']) as csvfile:
-        myreader = csv.reader(csvfile)  
+        myreader = csv.reader(csvfile)
         return [x for x in list(myreader) if x != []]
 
 TOTAL_COURSES = 8
@@ -48,7 +48,7 @@ def myprint(mystr):
             for cmdstr in cmdstrs:
                 os.system('echo=%s'%(cmdstr))
         else:
-            os.system('echo "%s"'%(mystr + '\n'))
+            os.system('echo "%s"'%(mystr))
     else:
         print(mystr)
     if LOG:
