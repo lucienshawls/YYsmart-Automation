@@ -9,7 +9,7 @@ driver:
   - '--headless'
   - 'window-size=1920x1080'
   wait_interval: 1
-  wait_timeout: 12
+  wait_timeout: 4
 runtime:
   cmdout: true
   log: false
