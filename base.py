@@ -39,8 +39,8 @@ with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as g:
     settings = yaml.full_load(g.read())
 LOG = settings['runtime']['log']
 CMDOUT = settings['runtime']['cmdout']
-WAIT_INTERVAL = eval(settings['driver']['wait_interval'])
-WAIT_TIMEOUT = eval(settings['driver']['wait_timeout'])
+WAIT_INTERVAL = settings['driver']['wait_interval']
+WAIT_TIMEOUT = settings['driver']['wait_timeout']
 
 def myprint(mystr):
     if CMDOUT:
