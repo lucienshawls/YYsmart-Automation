@@ -34,14 +34,6 @@ def init(myoption,exam_mode=False): # 初始化浏览器并导航至药育平台
     driver.maximize_window() # 最大化
 
     driver.get('http://www.yysmart.cn') # 药育平台首页
-    myerr = 0
-    while not selenium_wait(driver, '/html/body/div[3]/div[1]/div[2]/span[1]'): # 等待登录按钮
-        if myerr < 2:
-            driver.get('http://www.yysmart.cn')
-        else:
-            break
-        myerr += 1
-
     return driver
 
 def login(_drivr,accnt):

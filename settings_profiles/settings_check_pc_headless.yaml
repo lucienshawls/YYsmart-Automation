@@ -4,6 +4,8 @@ driver:
   options:
   - '--headless'
   - 'window-size=1920x1080'
+  wait_interval: 0.5
+  wait_timeout: 6
 runtime:
   cmdout: false
   log: true
