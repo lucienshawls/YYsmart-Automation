@@ -30,10 +30,20 @@ def init(myoption,exam_mode=False): # 初始化浏览器并导航至药育平台
         elif myoption['browser'] == 'edge':
             driver = webdriver.Edge(service=driver_service, options=option)
 
-    driver.implicitly_wait(20)
+    driver.implicitly_wait(8)
     driver.maximize_window() # 最大化
+
     driver.get('http://www.yysmart.cn') # 药育平台首页
+    myerr = 0
+    while not selenium_wait(driver, '/html/body/div[3]/div[1]/div[2]/span[1]'): # 等待登录按钮
+        if myerr < 2:
+            driver.get('http://www.yysmart.cn')
+        else:
+            break
+        myerr += 1
+
     return driver
+
 def login(_drivr,accnt):
     username=accnt[0]; password=accnt[1] # 获取用户名和密码
     _drivr.maximize_window() # 确认最大化
@@ -45,6 +55,7 @@ def login(_drivr,accnt):
     Clickx(_drivr,'/html/body/div[5]/div[2]/div/ul/li[1]')      # 用户身份
     time.sleep(0.5)                                             # 等待下拉列表消失
     Clickx(_drivr,'/html/body/div[5]/div[2]/a[2]')              # 登录
+
 def get_user_id(_drivr):
     cookies = _drivr.get_cookies()
     user_id = ''
@@ -110,21 +121,19 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
     for i in range(TOTAL_COURSES): # 遍历每个课程
         try:
             # 课程列表中当前课程的简写拼音名字（如an）对应的学生信息字典中option下的选修课程情况为确实选修
-            if sinfo['options'][course_list[i][2]]: 
+            if sinfo['options'][course_list[i][2]]:
                 result['info'] = 'Complete!' # 如果有修读的课程，就覆盖“No course”的消息
                 myprint('\tHandling: ' + course_list[i][0])
                 cinfo = course_list[i][1:] # 获取课程信息。
                 # course_list[i] = ['安','1187','an','1','1','0','18']
 
                 yycourse.detail(driver,cinfo) # 进入课程详情页
-                time.sleep(1) # 等待加载
                 if not check_only: # 如果不是仅验证，那就开始完成课业
                     if exam_mode:
                         yycourse.exam(driver,cinfo,user_id) # 考核
                     else:
                         yycourse.prev(driver,cinfo) # 预习
                         yycourse.test(driver,cinfo) # 自测
-                    time.sleep(1)
                 res = yycourse.check_all(driver,cinfo,exam_mode,check_only) # 无论如何最后需要检测完成情况
                 result['courses'][course_list[i][2]] = res[:] # [False,[prev_res, test_res, exam_res]]
         except:
