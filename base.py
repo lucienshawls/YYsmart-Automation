@@ -42,9 +42,13 @@ CMDOUT = settings['runtime']['cmdout']
 
 def myprint(mystr):
     if CMDOUT:
-        cmdstrs = mystr.split('\n')
-        for cmdstr in cmdstrs:
-            os.system('echo=%s'%(cmdstr))
+        sys_platform = sys.platform
+        if 'win' in sys_platform:
+            cmdstrs = mystr.split('\n')
+            for cmdstr in cmdstrs:
+                os.system('echo=%s'%(cmdstr))
+        else:
+            os.system('echo "%s"'%(mystr + '\n'))
     else:
         print(mystr)
     if LOG:

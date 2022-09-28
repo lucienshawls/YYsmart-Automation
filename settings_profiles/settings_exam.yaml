@@ -3,9 +3,9 @@ driver:
   driver_path: 'C:\Users\lucien\AppData\Local\Programs\selenium_driver\edge\103.0.1264.37\msedgedriver.exe'
   options: []
 runtime:
-  mode: 'exam'
-  log: true
   cmdout: false
+  log: true
+  mode: 'exam'
 yysmart:
   resource_path: 'C:\Users\lucien\Documents\GMP\YYsmart'
   user_profile_path: 'C:\Users\lucien\AppData\Roaming\YYsmartWeb'
