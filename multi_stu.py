@@ -56,7 +56,7 @@ def mysubmit(filenames, mode):
                 'courses':{}
             }
             pass
-        finally:    
+        finally:
             myprint(res['info']) # 打印返回的消息
             for course in res['courses'].items(): # 详细写出预习、自测、仿真考核的完成情况
                 myprint('\t' + CORRES[course[0]] + '：Prev: ' + course[1][1][0] + ', Test: ' + course[1][1][1] + ', Exam: ' + course[1][1][2])

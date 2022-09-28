@@ -34,6 +34,7 @@ def init(myoption,exam_mode=False): # 初始化浏览器并导航至药育平台
     driver.maximize_window() # 最大化
     driver.get('http://www.yysmart.cn') # 药育平台首页
     return driver
+
 def login(_drivr,accnt):
     username=accnt[0]; password=accnt[1] # 获取用户名和密码
     _drivr.maximize_window() # 确认最大化
@@ -45,6 +46,7 @@ def login(_drivr,accnt):
     Clickx(_drivr,'/html/body/div[5]/div[2]/div/ul/li[1]')      # 用户身份
     time.sleep(0.5)                                             # 等待下拉列表消失
     Clickx(_drivr,'/html/body/div[5]/div[2]/a[2]')              # 登录
+
 def get_user_id(_drivr):
     cookies = _drivr.get_cookies()
     user_id = ''
@@ -110,7 +112,7 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
     for i in range(TOTAL_COURSES): # 遍历每个课程
         try:
             # 课程列表中当前课程的简写拼音名字（如an）对应的学生信息字典中option下的选修课程情况为确实选修
-            if sinfo['options'][course_list[i][2]]: 
+            if sinfo['options'][course_list[i][2]]:
                 result['info'] = 'Complete!' # 如果有修读的课程，就覆盖“No course”的消息
                 myprint('\tHandling: ' + course_list[i][0])
                 cinfo = course_list[i][1:] # 获取课程信息。

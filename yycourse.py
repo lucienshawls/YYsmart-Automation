@@ -157,7 +157,7 @@ def perform_exam(_drivr,cinfo,cur,user_id): # 进行仿真考核 # [id,simp_nm,p
     replacement = exam_content[0:pos+7] + '100,"answer":""}'
     with open(exam_full_filename,'w',encoding='utf-8') as f:
         f.write(replacement)
-    
+
     a = input('\t\t\t文件替换完成，请点击仿真考核中的退出，按回车键继续')
     time.sleep(1)
     a = input('\t\t\t此仿真考核已完成，请按回车键继续')
