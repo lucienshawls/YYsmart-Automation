@@ -39,6 +39,7 @@ with open(MYDIR + '/settings.yaml','r',encoding='utf-8') as g:
     settings = yaml.full_load(g.read())
 LOG = settings['runtime']['log']
 CMDOUT = settings['runtime']['cmdout']
+WAIT_INTERVAL = settings['driver']['wait_interval']
 
 def myprint(mystr):
     if CMDOUT:
@@ -48,7 +49,7 @@ def myprint(mystr):
             for cmdstr in cmdstrs:
                 os.system('echo=%s'%(cmdstr))
         else:
-            os.system('echo "%s"'%(mystr + '\n'))
+            os.system('echo "%s"'%(mystr))
     else:
         print(mystr)
     if LOG:
@@ -65,8 +66,8 @@ def Enterx(_drivr,word,ele): #Put the word in the ele(ment) through xpath
     spot.send_keys(word)
 
 def selenium_wait(_drivr,ele): # 检测ele存在
-    wait_time = 6
-    wait_step = 0.5
+    wait_time = 8
+    wait_step = WAIT_INTERVAL
     res = False
     for i in range(int(wait_time/wait_step)):
         try:
