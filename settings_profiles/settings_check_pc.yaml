@@ -3,6 +3,7 @@ driver:
   driver_path: 'C:\Users\lucien\AppData\Local\Programs\selenium_driver\edge\103.0.1264.37\msedgedriver.exe'
   options: []
   wait_interval: 0.5
+  wait_timeout: 6
 runtime:
   cmdout: false
   log: true
