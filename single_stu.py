@@ -32,20 +32,16 @@ def init(myoption,exam_mode=False): # 初始化浏览器并导航至药育平台
 
     driver.implicitly_wait(20)
     driver.maximize_window() # 最大化
-    driver.get('http://www.yysmart.cn') # 药育平台首页
     return driver
 
 def login(_drivr,accnt):
+    _drivr.get('http://www.yysmart.cn/login.html') # 药育平台登录页
     username=accnt[0]; password=accnt[1] # 获取用户名和密码
     _drivr.maximize_window() # 确认最大化
-    Clickx(_drivr,'/html/body/div[3]/div[1]/div[2]/span[1]')    # 登录
-    Enterx(_drivr,username,'/html/body/div[5]/div[2]/input[1]') # 用户名
-    Enterx(_drivr,password,'/html/body/div[5]/div[2]/input[2]') # 密码
-    Clickx(_drivr,'/html/body/div[5]/div[2]/div/p')             # 下拉
-    time.sleep(0.5)                                             # 等待下拉列表加载
-    Clickx(_drivr,'/html/body/div[5]/div[2]/div/ul/li[1]')      # 用户身份
-    time.sleep(0.5)                                             # 等待下拉列表消失
-    Clickx(_drivr,'/html/body/div[5]/div[2]/a[2]')              # 登录
+    Enterx(_drivr,username,'/html/body/div[1]/div[2]/div[2]/div[1]/input')  # 用户名
+    Enterx(_drivr,password,'/html/body/div[1]/div[2]/div[2]/div[2]/input')  # 密码
+    Clickx(_drivr,'/html/body/div[1]/div[2]/div[2]/div[3]/div/ul/li[1]')    # 用户身份
+    Clickx(_drivr,'/html/body/div[1]/div[2]/div[3]/a')                      # 登录
 
 def get_user_id(_drivr):
     cookies = _drivr.get_cookies()
