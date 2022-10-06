@@ -1,6 +1,6 @@
 driver:
   browser: 'edge'
-  driver_path: 'C:\Users\lucien\AppData\Local\Programs\selenium_driver\edge\103.0.1264.37\msedgedriver.exe'
+  driver_path: 'C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe'
   options: []
 runtime:
   cmdout: false
