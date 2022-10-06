@@ -84,16 +84,18 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
     time.sleep(1) # 等待登录后页面刷新
     user_id = get_user_id(driver)
     # 检测右上角显示的名字
-    actual_name = driver.find_element(by=By.XPATH,value='/html/body/div[3]/div[1]/div[3]/div/h3').text
-    if sinfo['name'] != actual_name: # 如果右上角显示的名字与本地记录不符（登记错误或者密码错误）
-        if actual_name == '':
-            myprint('\tIncorrect username or password!')
-            result = {'res':False,'info':'Incorrect username or password','courses':{}}
-        else:
+    if driver.current_url == 'http://www.yysmart.cn/login.html':
+        myprint('\tIncorrect username or password!')
+        result = {'res':False,'info':'Incorrect username or password','courses':{}}
+        driver.quit()
+        return result
+    else:
+        actual_name = driver.find_element(by=By.XPATH,value='/html/body/div[3]/div[1]/div[3]/div/h3').text
+        if sinfo['name'] != actual_name: # 如果右上角显示的名字与本地记录不符（登记错误或者密码错误）
             myprint('\tName mismatch! ' + sinfo['name'] + ' // ' + actual_name) # 报错并展示两个名字
             result = {'res':False,'info':'Name mismatch','courses':{}}
-        driver.quit() # 退出浏览器
-        return result
+            driver.quit() # 退出浏览器
+            return result
     result = {'res':True,'info':'No course','courses':{}}
     if exam_mode:
         a = input('\t请启动yysmart浏览助手并确认登陆账号为：' + sinfo['accnt'][0] + '输入y以显示密码')
@@ -125,10 +127,10 @@ def mysubmit(sinfo,check_only=False,exam_mode=False):
                     time.sleep(1)
                 res = yycourse.check_all(driver,cinfo,exam_mode,check_only) # 无论如何最后需要检测完成情况
                 result['courses'][course_list[i][2]] = res[:] # [False,[prev_res, test_res, exam_res]]
-        except:
+        except Exception as e:
             result['courses'][course_list[i][2]] = [False,['Fail','Fail','Fail']]
             err = True
-            myprint('\t\tERROR!!!!!')
+            myprint('\t\tERROR: %s' %(str(e)))
     for course in result['courses'].items():
         # course = ('an', [, [, , ]])
         if course[1][0] == False:

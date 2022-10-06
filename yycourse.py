@@ -174,8 +174,8 @@ def exam(_drivr,cinfo,user_id): # 仿真考核
             myprint('\t\t\t' + str(i) + '/' + str(num) + '(' + str(trials) + ')')
             try:
                 perform_exam(_drivr,cinfo,i,user_id) # 进行仿真考核
-            except:
-                pass
+            except Exception as e:
+                myprint(str(e))
             time.sleep(1) # 稍等，在安装了yysmart的情况下，浏览器可能弹出警告
         detail(_drivr,cinfo) # 回到课程详情
         time.sleep(1) # 等待课程详情页加载
