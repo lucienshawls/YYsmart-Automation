@@ -48,11 +48,11 @@ def mysubmit(filenames, mode):
             else: # 如果仅验证
                 myprint('Checking for completion...\n')
                 res = single_stu.mysubmit(stu,check_only=True,exam_mode=False) # 开始，但是仅验证
-        except:
+        except Exception as e:
             ## 处理这个学生时发生错误，填写相关信息
             res = {
                 'res': False,
-                'info': 'An error occured',
+                'info': 'An error occured: %s' %(str(e)),
                 'courses':{}
             }
             pass
@@ -89,7 +89,8 @@ if __name__ == '__main__':
     myprint('='*60)
     try:
         main()
-    except:
+    except Exception as e:
+        myprint(str(e))
         myprint('The program failed to run. Check settings and the webdriver.')
     ed = datetime.datetime.now()
     myprint('='*60)
