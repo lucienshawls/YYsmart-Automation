@@ -6,7 +6,7 @@ def get_all_sinfo(filename,submit=False,verify=True):
     sl = mycsv(MYDIR + '/students/' + filename + '.csv') # 读取学生名单
     res = []
     for stu in sl:
-        if stu[12] == 'exclude': # 被exclude标记的那一行被跳过
+        if stu[12] != 'include': # 没有被include标记的那一行被跳过
             continue # 直接看下一行
         sinfo = { # 单个学生信息
             'accnt':[stu[0],stu[1]],        # 账号密码
